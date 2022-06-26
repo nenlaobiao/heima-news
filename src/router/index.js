@@ -3,7 +3,7 @@ import VueRouter from 'vue-router'
 import Layout from '@/views/Layout'
 import Home from '@/views/Home'
 import My from '@/views/My'
-import Questron from '@/views/Questron'
+import Question from '@/views/Question'
 import Video from '@/views/Video'
 Vue.use(VueRouter)
 
@@ -15,7 +15,7 @@ const routes = [
     children: [
       { path: 'home', component: Home },
       { path: 'video', component: Video },
-      { path: 'questron', component: Questron },
+      { path: 'question', component: Question },
       { path: 'my', component: My }
     ]
   }

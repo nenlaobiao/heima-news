@@ -10,7 +10,7 @@
         <i class="toutiao toutiao-shipin" slot="icon"></i>
         视频
       </van-tabbar-item>
-      <van-tabbar-item replace to="/questron" icon="search">
+      <van-tabbar-item replace to="/question" icon="search">
         <i class="toutiao toutiao-wenda" slot="icon"></i>
         问答
       </van-tabbar-item>
