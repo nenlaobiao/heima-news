@@ -1,6 +1,6 @@
 <template>
   <div class="main">
-    <van-nav-bar title="登录" left-arrow placeholder>
+    <van-nav-bar title="登录" left-arrow placeholder @click-left="onClickLeft">
       <template #left><van-icon name="cross" color="white" /></template>
     </van-nav-bar>
     <van-form @submit="onSubmit" ref="form">
@@ -15,8 +15,10 @@
             message: '不符合手机号格式',
           },
         ]"
-        ><i class="toutiao toutiao-shouji" slot="left-icon"></i
-      ></van-field>
+      >
+        <!-- <i class="toutiao toutiao-shouji" slot="left-icon"></i> -->
+        <Myicon :name="'shouji'" slot="left-icon"></Myicon>
+      </van-field>
       <van-field
         v-model.trim="code"
         type="password"
@@ -60,18 +62,24 @@
 </template>
 
 <script>
+import Myicon from '@/components/Myicon.vue'
+
 import { getSmsCode, login } from '@/api/user'
 export default {
+  name: 'login',
   created () { },
   data () {
     return {
       isCountDownShow: true,
       time: 30 * 1000,
-      mobile: '13911111111',
+      mobile: '17633544435',
       code: '246810'
     }
   },
   methods: {
+    onClickLeft () {
+      this.$router.push({ name: 'my' })
+    },
     async onSendSms () {
       try {
         await this.$refs.form.validate('mobile')
@@ -99,6 +107,7 @@ export default {
         const res = await login(values)
         console.log(res)
         this.$store.commit('setUser', res.data.data)
+        this.$router.push({ name: 'my' })
       } catch (err) {
         console.log(err)
       }
@@ -107,7 +116,7 @@ export default {
   computed: {},
   watch: {},
   filters: {},
-  components: {}
+  components: { Myicon }
 }
 </script>
 

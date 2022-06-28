@@ -1,6 +1,6 @@
 <template>
   <div>
-    <router-view />
+    <router-view class="main"  />
     <van-tabbar route>
       <van-tabbar-item replace to="/home" icon="home-o">
         <i class="toutiao toutiao-shouye" slot="icon"></i>
@@ -24,9 +24,12 @@
 
 <script>
 export default {
+  name: 'layout',
+
   created () { },
   data () {
-    return {}
+    return {
+    }
   },
   methods: {},
   computed: {},
@@ -37,6 +40,10 @@ export default {
 </script>
 
 <style scoped lang='less'>
+.main{
+  padding-bottom: 100px;
+  background-color: #f5f7f9;
+}
 .toutiao {
   font-size: 40px;
 }

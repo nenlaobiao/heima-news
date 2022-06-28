@@ -1,4 +1,5 @@
 import instance from '@/utils/request'
+import store from '@/store'
 /**
  * 获取短信验证码接口
  * @param {Number} mobile 手机号
@@ -6,7 +7,7 @@ import instance from '@/utils/request'
  */
 export const getSmsCode = (mobile) => {
   return instance({
-    url: `sms/codes/${mobile}`
+    url: `/sms/codes/${mobile}`
   })
 }
 
@@ -17,6 +18,14 @@ export const login = ({ mobile, code }) => {
     data: {
       mobile,
       code
+    }
+  })
+}
+export const getUserInfo = () => {
+  return instance({
+    url: '/user',
+    headers: {
+      Authorization: 'Bearer ' + store.state.user.token
     }
   })
 }
