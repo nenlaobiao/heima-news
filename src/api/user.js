@@ -29,3 +29,7 @@ export const getUserInfo = () => {
     }
   })
 }
+export const getAllArtLists = () => {
+  return instance(
+    { url: '/channels' })
+}
