@@ -7,8 +7,8 @@ import Vant from 'vant'
 import 'vant/lib/index.less'
 import 'amfe-flexible'
 import '@/styles/index.less'
-
 import * as obj from '@/filters'
+import '@/components'
 Object.keys(obj).forEach(key => {
   Vue.filter(key, obj[key])
 })

@@ -9,25 +9,25 @@
             round
             :src="this.userinfo.photo"
           />
-          <span>{{this.userinfo.name}}</span>
+          <span>{{ this.userinfo.name }}</span>
         </div>
         <div class="btn">编辑资料</div>
       </div>
       <ul class="lists">
         <li>
-          <p>{{userinfo.art_count}}</p>
+          <p>{{ userinfo.art_count }}</p>
           <p>头条</p>
         </li>
         <li>
-          <p>{{userinfo.follow_count}}</p>
+          <p>{{ userinfo.follow_count }}</p>
           <p>关注</p>
         </li>
         <li>
-          <p>{{userinfo.fans_count}}</p>
+          <p>{{ userinfo.fans_count }}</p>
           <p>粉丝</p>
         </li>
         <li>
-          <p>{{userinfo.like_count}}</p>
+          <p>{{ userinfo.like_count }}</p>
           <p>赞赏</p>
         </li>
       </ul>
@@ -76,6 +76,7 @@ export default {
         console.log(res)
         this.userinfo = res.data.data
       } catch (e) {
+        if (e.request.state !== 200) { return this.$store.commit('setUser', {}) }
         console.log(e)
       }
     }
