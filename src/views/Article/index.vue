@@ -54,6 +54,10 @@
             :type="'a'"
             @commnum="count = $event"
             :commentList="commentList"
+            @replay-show="
+              comment = $event;
+              isReplayShow = true;
+            "
           ></ArticleComment>
         </div>
         <!-- /加载完成-文章详情 -->
@@ -112,10 +116,22 @@
         @addCommt="addCommt($event)"
       ></AddComment>
     </van-popup>
+    <van-popup
+      v-model="isReplayShow"
+      :style="{ height: '100%' }"
+      position="bottom"
+    >
+      <ReplayComment
+      v-if='isReplayShow'
+        :comment="comment"
+        @offReplay="isReplayShow = false"
+      ></ReplayComment>
+    </van-popup>
   </div>
 </template>
 
 <script>
+import ReplayComment from './components/ReplayComment.vue'
 import AddComment from './components/AddComment.vue'
 import ArticleComment from './components/ArticleComment.vue'
 import { Toast, ImagePreview } from 'vant'
@@ -123,7 +139,7 @@ import 'github-markdown-css'
 import { getArticle } from '@/api/article'
 export default {
   name: 'ArticleIndex',
-  components: { ArticleComment, AddComment },
+  components: { ArticleComment, AddComment, ReplayComment },
   props: {
     article_id: {
       type: [Number, String],
@@ -132,6 +148,8 @@ export default {
   },
   data () {
     return {
+      comment: {},
+      isReplayShow: false,
       commentList: [],
       popupShow: false,
       count: null,

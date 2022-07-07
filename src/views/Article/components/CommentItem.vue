@@ -13,7 +13,7 @@
       <p style="color: #363636">{{ item.content }}</p>
       <p>
         <span style="margin-right: 10px">{{ item.pubdate | dateformat }}</span>
-        <van-button size="mini" type="default"
+        <van-button size="mini" type="default" @click='$emit("replay-show",item)'
           >{{ item.reply_count ? item.reply_count : "" }} 回复</van-button
         >
       </p>

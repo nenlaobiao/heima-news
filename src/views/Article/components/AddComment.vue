@@ -22,6 +22,9 @@ import { Toast } from 'vant'
 import { addComment } from '@/api/comment'
 export default {
   props: {
+    art_id: {
+      type: [Number, String]
+    },
     target: {
       type: [Number, String],
       required: true
