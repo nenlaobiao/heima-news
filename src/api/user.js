@@ -54,3 +54,15 @@ export const updataUserProfile = profile => {
     data: profile
   })
 }
+/**
+ * 更换头像接口
+ * @param {*} data
+ * @returns
+ */
+export const updataAvatar = data => {
+  return instance({
+    method: 'PATCH',
+    url: '/user/photo',
+    data
+  })
+}

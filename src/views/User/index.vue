@@ -8,11 +8,11 @@
       @click-left="$router.back()"
     />
     <!-- /导航栏 -->
-    <van-cell title="头像" is-link>
+    <van-cell title="头像" is-link @click="showInput">
       <van-image
         class="avatar"
-        width="100px"
-        height="100px"
+        width="50px"
+        height="50px"
         round
         :src="myInfo.photo"
       />
@@ -20,7 +20,8 @@
     <van-cell
       title="昵称"
       :value="myInfo.name"
-      @click="isNameShow = true;
+      @click="
+        isNameShow = true;
         name = myInfo.name;
       "
       is-link
@@ -62,10 +63,26 @@
         :max-date="maxDate"
       />
     </van-popup>
+    <van-popup position="bottom" style="height: 70%" v-model="isAvatarShow">
+      <UpdateAvatar
+        :imgSrc.sync="imgSrc"
+        @close="isAvatarShow = false;
+        myInfo.photo=$event"
+      ></UpdateAvatar>
+    </van-popup>
+    <input
+      type="file"
+      name=""
+      ref="file"
+      style="display: none"
+      accept="image/jpeg,image/png,image/gif,image/jpg"
+      @change="onChange"
+    />
   </div>
 </template>
 
 <script>
+import UpdateAvatar from './components/UpdateAvatar.vue'
 import { getUserProfile, updataUserProfile } from '@/api/user'
 export default {
   created () {
@@ -75,14 +92,24 @@ export default {
     return {
       isNameShow: false,
       isBirthdayShow: false,
+      isAvatarShow: false,
       myInfo: {},
       name: '',
       minDate: new Date(1950, 0, 1),
       maxDate: new Date(2022, 8, 1),
-      birthday1: ''
+      birthday1: '',
+      imgSrc: ''
     }
   },
   methods: {
+    onChange () {
+      const src = window.URL.createObjectURL(this.$refs.file.files[0])
+      this.imgSrc = src
+      this.isAvatarShow = true
+    },
+    showInput () {
+      this.$refs.file.click()
+    },
     onConfirm () {
       this.myInfo.birthday = this.birthday1
       this.updataUserProfile()
@@ -127,9 +154,10 @@ export default {
       }
     }
   },
-  watch: {},
+  watch: {
+  },
   filters: {},
-  components: {}
+  components: { UpdateAvatar }
 }
 </script>
 
