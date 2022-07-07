@@ -11,7 +11,7 @@
           />
           <span>{{ this.userinfo.name }}</span>
         </div>
-        <div class="btn">编辑资料</div>
+        <div class="btn" @click='$router.push("/user")'>编辑资料</div>
       </div>
       <ul class="lists">
         <li>

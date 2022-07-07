@@ -33,3 +33,24 @@ export const getAllArtLists = () => {
   return instance(
     { url: '/channels' })
 }
+/**
+ *  获取用户信息
+ * @returns
+ */
+export const getUserProfile = () => {
+  return instance({
+    url: '/user/profile'
+  })
+}
+/**
+ * 修改用户信息接口
+ * @param {*} profile 传入新的个人信息
+ * @returns
+ */
+export const updataUserProfile = profile => {
+  return instance({
+    method: 'PATCH',
+    url: 'user/profile',
+    data: profile
+  })
+}
